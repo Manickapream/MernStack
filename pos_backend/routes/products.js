@@ -3,6 +3,7 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 const Product = require('../models/Product');
+const cloudinary = require('../config/cloudinary');
 const { optionalAuth } = require('../middleware/auth');
 
 const router = express.Router();
@@ -58,17 +59,7 @@ function buildUrl(filePath, req) {
 
 function formatProduct(p, req) {
   const placeholder = 'https://via.placeholder.com/300x200?text=No+Image';
-  // If image is a Base64 data URI, use it directly; otherwise check file existence
-  let imageUrl;
-  if (!p.image) {
-    imageUrl = placeholder;
-  } else if (p.image.startsWith('data:image')) {
-    imageUrl = p.image; // already a data URI
-  } else {
-    const fullPath = path.join(__dirname, '..', p.image);
-    imageUrl = fs.existsSync(fullPath) ? buildUrl(p.image, req) : placeholder;
-  }
-
+  const imageUrl = p.image ? p.image : placeholder; // Cloudinary URL or placeholder
   return {
     id: p._id,
     name: p.name,
@@ -128,9 +119,13 @@ router.post('/', optionalAuth, uploadBoth, async (req, res) => {
     let imagePath = null;
     if (files.image) {
       const file = files.image[0];
-      const base64 = fs.readFileSync(file.path, { encoding: 'base64' });
-      imagePath = `data:${file.mimetype};base64,${base64}`;
-      // Remove the temp file
+      // Upload to Cloudinary
+      const uploadResult = await cloudinary.uploader.upload(file.path, {
+        folder: 'pos_products',
+        resource_type: 'image',
+      });
+      imagePath = uploadResult.secure_url; // Store URL
+      // Remove temp file
       fs.unlinkSync(file.path);
     }
     
@@ -199,8 +194,11 @@ router.put('/:id/', optionalAuth, uploadBoth, async (req, res) => {
     const files = req.files || {};
     if (files.image) {
       const file = files.image[0];
-      const base64 = fs.readFileSync(file.path, { encoding: 'base64' });
-      product.image = `data:${file.mimetype};base64,${base64}`;
+      const uploadResult = await cloudinary.uploader.upload(file.path, {
+        folder: 'pos_products',
+        resource_type: 'image',
+      });
+      product.image = uploadResult.secure_url;
       fs.unlinkSync(file.path);
     }
     if (files.document) {
