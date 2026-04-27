@@ -51,7 +51,7 @@ const uploadBoth = multer({
 // ──── Helpers ────
 function buildUrl(filePath, req) {
   if (!filePath) return null;
-  if (filePath.startsWith('http')) return filePath;
+  if (filePath.startsWith('http') || filePath.startsWith('data:image')) return filePath;
   // Always return full URL (works for both local dev and production)
   return `${req.protocol}://${req.get('host')}/${filePath}`;
 }
@@ -113,7 +113,15 @@ router.post('/', optionalAuth, uploadBoth, async (req, res) => {
     const { name, price, description, status } = req.body;
     const files = req.files || {};
 
-    const imagePath = files.image ? `uploads/products/${files.image[0].filename}` : null;
+    let imagePath = null;
+    if (files.image) {
+      const file = files.image[0];
+      const base64 = fs.readFileSync(file.path, { encoding: 'base64' });
+      imagePath = `data:${file.mimetype};base64,${base64}`;
+      // Remove the temp file
+      fs.unlinkSync(file.path);
+    }
+    
     const docPath   = files.document ? `uploads/documents/${files.document[0].filename}` : null;
     const docName   = files.document ? files.document[0].originalname : null;
 
@@ -177,7 +185,12 @@ router.put('/:id/', optionalAuth, uploadBoth, async (req, res) => {
     if (status      !== undefined) product.status      = status;
 
     const files = req.files || {};
-    if (files.image)    product.image = `uploads/products/${files.image[0].filename}`;
+    if (files.image) {
+      const file = files.image[0];
+      const base64 = fs.readFileSync(file.path, { encoding: 'base64' });
+      product.image = `data:${file.mimetype};base64,${base64}`;
+      fs.unlinkSync(file.path);
+    }
     if (files.document) {
       product.document      = `uploads/documents/${files.document[0].filename}`;
       product.document_name = files.document[0].originalname;
