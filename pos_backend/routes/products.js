@@ -57,12 +57,24 @@ function buildUrl(filePath, req) {
 }
 
 function formatProduct(p, req) {
+  const placeholder = 'https://via.placeholder.com/300x200?text=No+Image';
+  // If image is a Base64 data URI, use it directly; otherwise check file existence
+  let imageUrl;
+  if (!p.image) {
+    imageUrl = placeholder;
+  } else if (p.image.startsWith('data:image')) {
+    imageUrl = p.image; // already a data URI
+  } else {
+    const fullPath = path.join(__dirname, '..', p.image);
+    imageUrl = fs.existsSync(fullPath) ? buildUrl(p.image, req) : placeholder;
+  }
+
   return {
     id: p._id,
     name: p.name,
     price: p.price,
     image: p.image,
-    image_url: buildUrl(p.image, req),
+    image_url: imageUrl,
     document: p.document,
     document_url: buildUrl(p.document, req),
     document_name: p.document_name || null,
