@@ -59,3 +59,20 @@
   padding: 0.45rem 0.65rem !important;
   font-size: 0.8rem;
 }
+
+/* Document link in table */
+.doc-link-table {
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  transition: background 0.2s, transform 0.2s;
+}
+.doc-link-table:hover {
+  background: var(--accent-bg);
+  transform: scale(1.1);
+}
+

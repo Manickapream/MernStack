@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { PlusCircle, Pencil, Trash2, Package } from 'lucide-react'
+import { PlusCircle, Pencil, Trash2, Package, FileText } from 'lucide-react'
 import toast from 'react-hot-toast'
 import Sidebar from '../components/Sidebar'
 import api from '../api/axios'
@@ -67,6 +67,7 @@ export default function ViewProducts() {
                   <th>Image</th>
                   <th>Name</th>
                   <th>Price</th>
+                  <th>Doc</th>
                   <th>Status</th>
                   {role === 'Admin' && <th>Actions</th>}
                 </tr>
@@ -92,6 +93,15 @@ export default function ViewProducts() {
                     </td>
                     <td>
                       <span className="price-chip">₹ {p.price}</span>
+                    </td>
+                    <td>
+                      {p.document_url ? (
+                        <a href={p.document_url} target="_blank" rel="noreferrer" className="doc-link-table" title="View Document">
+                          <FileText size={18} />
+                        </a>
+                      ) : (
+                        <span className="text-muted">—</span>
+                      )}
                     </td>
                     <td>
                       <span className={`badge ${p.status === 'Active' ? 'badge-success' : 'badge-danger'}`}>
@@ -123,6 +133,7 @@ export default function ViewProducts() {
                   </tr>
                 ))}
               </tbody>
+
             </table>
           </div>
         )}
