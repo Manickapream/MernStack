@@ -52,8 +52,8 @@ const uploadBoth = multer({
 function buildUrl(filePath, req) {
   if (!filePath) return null;
   if (filePath.startsWith('http')) return filePath;
-  // Return relative path so frontend proxy or same-origin serves it
-  return `/${filePath}`;
+  // Always return full URL (works for both local dev and production)
+  return `${req.protocol}://${req.get('host')}/${filePath}`;
 }
 
 function formatProduct(p, req) {
