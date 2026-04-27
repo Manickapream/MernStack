@@ -165,7 +165,7 @@
   .search-input { font-size: 0.9rem; }
   .home-content { padding: 1.25rem 1rem; }
   .product-grid {
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
   }
 }
@@ -175,7 +175,10 @@
   .home-hero { padding: 2rem 0.75rem 1.5rem; }
   .hero-badge { font-size: 0.68rem; padding: 0.3rem 0.8rem; }
   .hero-sub { font-size: 0.85rem; margin-bottom: 1.5rem; }
-  .home-content { padding: 1rem 0.75rem; }
-  .product-grid { grid-template-columns: 1fr; }
+  .home-content { padding: 1rem 0.5rem; }
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+  }
   .home-footer { padding: 1rem; font-size: 0.75rem; }
 }

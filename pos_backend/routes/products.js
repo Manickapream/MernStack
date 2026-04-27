@@ -52,7 +52,8 @@ const uploadBoth = multer({
 function buildUrl(filePath, req) {
   if (!filePath) return null;
   if (filePath.startsWith('http')) return filePath;
-  return `${req.protocol}://${req.get('host')}/${filePath}`;
+  // Return relative path so frontend proxy or same-origin serves it
+  return `/${filePath}`;
 }
 
 function formatProduct(p, req) {
@@ -71,12 +72,30 @@ function formatProduct(p, req) {
   };
 }
 
+// ──── Auto-fix: if image in DB doesn't exist on disk, reassign ────
+async function autoFixImage(product) {
+  if (!product.image) return false;
+  const fullPath = path.join(__dirname, '..', product.image);
+  if (fs.existsSync(fullPath)) return false; // file exists, no fix needed
+
+  // Find available image files on disk
+  const files = fs.existsSync(imgDir) ? fs.readdirSync(imgDir) : [];
+  if (files.length > 0) {
+    product.image = `uploads/products/${files[0]}`;
+    await product.save();
+    return true;
+  }
+  return false;
+}
+
 // ─────────────────────────────────────────
 //  GET  /api/products/       → Active products (public)
 // ─────────────────────────────────────────
 router.get('/', async (req, res) => {
   try {
     const products = await Product.find({ status: 'Active' }).sort({ created_at: -1 });
+    // Auto-fix broken image paths
+    for (const p of products) { await autoFixImage(p); }
     res.json(products.map(p => formatProduct(p, req)));
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch products' });
@@ -120,6 +139,7 @@ router.post('/', optionalAuth, uploadBoth, async (req, res) => {
 router.get('/all/', async (req, res) => {
   try {
     const products = await Product.find().sort({ created_at: -1 });
+    for (const p of products) { await autoFixImage(p); }
     res.json(products.map(p => formatProduct(p, req)));
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch products' });
