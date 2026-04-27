@@ -1,0 +1,165 @@
+.inquiry-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f0f4f8 0%, #e8edf5 50%, #f5f0ff 100%);
+  padding: 2rem 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Orbs */
+.orb { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; }
+.orb-1 { width: 420px; height: 420px; background: rgba(99,102,241,0.08); top: -120px; right: -80px; }
+.orb-2 { width: 360px; height: 360px; background: rgba(139,92,246,0.06); bottom: -100px; left: -80px; }
+
+/* Card */
+.inquiry-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 2rem 2.5rem;
+  width: 100%;
+  max-width: 640px;
+  position: relative;
+  z-index: 1;
+  box-shadow: var(--shadow-lg);
+}
+
+/* Header */
+.inq-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+.inq-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+.inq-brand-icon {
+  width: 30px; height: 30px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff;
+  box-shadow: 0 4px 12px var(--accent-glow);
+}
+.back-btn { padding: 0.4rem 0.9rem !important; font-size: 0.8rem !important; }
+
+/* Title */
+.inq-title-row { margin-bottom: 1.5rem; }
+.inq-title-row h1 { font-size: 1.5rem; color: var(--text-primary); margin-bottom: 0.3rem; }
+.inq-title-row p { color: var(--text-muted); font-size: 0.88rem; }
+
+/* Product info strip */
+.product-info-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.75rem;
+  padding: 1rem 1.25rem;
+  background: var(--accent-bg);
+  border: 1px solid rgba(99,102,241,0.12);
+  border-radius: var(--radius-md);
+}
+.info-pill {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.info-pill.accent { color: var(--accent); font-weight: 600; }
+.pill-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-muted);
+}
+
+/* Grid */
+.inq-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.full-width { grid-column: 1 / -1; }
+
+/* Input with icon */
+.input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.input-icon {
+  position: absolute;
+  left: 0.85rem;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+.textarea-icon { top: 0.85rem; align-self: flex-start; }
+.textarea-wrap { align-items: flex-start; }
+
+.inq-input { padding-left: 2.4rem !important; }
+.inq-textarea {
+  padding-left: 2.4rem !important;
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Submit */
+.inq-submit {
+  width: 100%;
+  justify-content: center;
+  padding: 0.85rem;
+  font-size: 0.95rem;
+  margin-top: 1.25rem;
+}
+
+/* Success state */
+.success-card {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 3rem 2rem;
+}
+.success-icon { font-size: 3.5rem; }
+.success-card h2 { font-size: 1.8rem; color: var(--text-primary); }
+.success-card p { color: var(--text-secondary); line-height: 1.7; }
+.success-card strong { color: var(--accent); }
+
+/* Spinner sm */
+.spinner-sm {
+  width: 16px; height: 16px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+}
+
+@media (max-width: 768px) {
+  .inquiry-page { padding: 1rem 0.75rem; }
+  .inquiry-card { padding: 1.5rem; border-radius: var(--radius-lg); }
+  .inq-grid { grid-template-columns: 1fr; }
+  .full-width { grid-column: unset; }
+  .inq-title-row h1 { font-size: 1.25rem; }
+  .product-info-strip { padding: 0.75rem 1rem; flex-direction: column; gap: 0.5rem; }
+  .success-card { padding: 2rem 1rem; }
+  .success-card h2 { font-size: 1.4rem; }
+}
+
+@media (max-width: 400px) {
+  .inquiry-card { padding: 1rem; }
+  .inq-header { flex-direction: column; gap: 0.75rem; align-items: flex-start; }
+}

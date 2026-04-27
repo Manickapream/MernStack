@@ -1,0 +1,125 @@
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f0f4f8 0%, #e8edf5 50%, #f5f0ff 100%);
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative shapes */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+.orb-1 {
+  width: 500px; height: 500px;
+  background: rgba(99, 102, 241, 0.10);
+  top: -150px; left: -150px;
+}
+.orb-2 {
+  width: 400px; height: 400px;
+  background: rgba(139, 92, 246, 0.08);
+  bottom: -120px; right: -120px;
+}
+
+/* Card */
+.login-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 430px;
+  position: relative;
+  z-index: 1;
+  box-shadow: var(--shadow-lg);
+}
+
+/* Header */
+.login-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.login-icon {
+  width: 64px; height: 64px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  margin: 0 auto 1rem;
+  box-shadow: 0 8px 28px var(--accent-glow);
+}
+.login-header h1 {
+  font-size: 1.6rem;
+  color: var(--text-primary);
+  margin-bottom: 0.35rem;
+}
+.login-header p {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}
+
+/* Form */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+.input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.input-icon {
+  position: absolute;
+  left: 0.9rem;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+.login-input {
+  padding-left: 2.5rem !important;
+}
+.login-btn {
+  width: 100%;
+  justify-content: center;
+  padding: 0.85rem;
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+}
+.spinner-sm {
+  width: 16px; height: 16px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+/* Footer */
+.login-footer {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+.back-link {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  transition: color 0.2s;
+}
+.back-link:hover { color: var(--accent); }
+
+/* ── Mobile ── */
+@media (max-width: 480px) {
+  .login-page { padding: 1rem; }
+  .login-card {
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+  }
+  .login-icon { width: 52px; height: 52px; }
+  .login-header h1 { font-size: 1.35rem; }
+}

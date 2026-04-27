@@ -1,0 +1,12 @@
+{
+  "name": "pos-solution",
+  "version": "1.0.0",
+  "description": "Root package to run frontend and backend concurrently",
+  "scripts": {
+    "install-all": "cd pos_backend && npm install && cd ../pos_frontend && npm install",
+    "dev": "npx concurrently \"npm run dev --prefix pos_backend\" \"npm run dev --prefix pos_frontend\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

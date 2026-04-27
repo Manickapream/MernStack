@@ -1,0 +1,55 @@
+.row-num { color: var(--text-muted); font-size: 0.82rem; }
+
+.customer-name {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+.customer-email {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 0.15rem;
+}
+
+.inq-product {
+  font-size: 0.85rem;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.price-chip-inq {
+  background: var(--accent-bg);
+  color: var(--accent);
+  border: 1px solid rgba(99,102,241,0.15);
+  padding: 0.18rem 0.6rem;
+  border-radius: 99px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.mobile-link {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  transition: color 0.2s;
+}
+.mobile-link:hover { color: var(--accent); }
+
+.inq-message {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.inq-date {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.action-btn {
+  padding: 0.4rem 0.6rem !important;
+}

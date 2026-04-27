@@ -1,0 +1,173 @@
+/* ── Mobile Header (visible only on small screens) ── */
+.mobile-header {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 56px;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  z-index: 90;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  box-shadow: var(--shadow-xs);
+}
+.hamburger-btn {
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  color: var(--text-primary);
+  transition: background 0.2s;
+}
+.hamburger-btn:hover { background: var(--accent-bg); color: var(--accent); }
+.mobile-brand {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-family: 'Outfit', sans-serif; font-weight: 700;
+  font-size: 1.05rem; color: var(--text-primary);
+}
+.mobile-brand-icon {
+  width: 30px; height: 30px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff;
+}
+
+/* ── Sidebar overlay (mobile) ── */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 99;
+  animation: fadeIn 0.2s ease;
+}
+
+/* ── Close button (mobile) ── */
+.sidebar-close {
+  display: none;
+  position: absolute;
+  top: 0.75rem; right: 0.75rem;
+  width: 36px; height: 36px;
+  align-items: center; justify-content: center;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  color: var(--text-secondary);
+  z-index: 10;
+}
+.sidebar-close:hover { color: var(--danger); background: var(--danger-bg); }
+
+/* ── Desktop Sidebar ── */
+.sidebar {
+  position: fixed;
+  top: 0; left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  overflow-y: auto;
+  box-shadow: 2px 0 16px rgba(0,0,0,0.04);
+  transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* Brand */
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.5rem 1.25rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+.brand-icon {
+  width: 40px; height: 40px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff;
+  box-shadow: 0 4px 14px var(--accent-glow);
+  flex-shrink: 0;
+}
+.brand-name {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.05rem; font-weight: 700;
+  color: var(--text-primary);
+}
+.brand-sub {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* Nav */
+.sidebar-nav {
+  flex: 1;
+  padding: 1rem 0.75rem;
+  display: flex; flex-direction: column;
+  gap: 0.3rem;
+}
+.nav-item {
+  display: flex; align-items: center;
+  gap: 0.75rem;
+  padding: 0.7rem 1rem;
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: 0.9rem; font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none; background: transparent;
+  width: 100%; text-align: left;
+  font-family: 'Inter', sans-serif;
+}
+.nav-item:hover {
+  background: var(--accent-bg);
+  color: var(--accent);
+}
+.nav-item.active {
+  background: linear-gradient(135deg, var(--accent-bg), rgba(99,102,241,0.12));
+  color: var(--accent);
+  font-weight: 600;
+  border-left: 3px solid var(--accent);
+}
+.nav-item svg { flex-shrink: 0; }
+
+/* Footer */
+.sidebar-footer {
+  padding: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+.logout-btn { color: var(--danger) !important; }
+.logout-btn:hover {
+  background: var(--danger-bg) !important;
+  color: var(--danger) !important;
+}
+
+/* ── Animations ── */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* ══════════════════════════════════════
+   MOBILE RESPONSIVE (≤ 768px)
+   ══════════════════════════════════════ */
+@media (max-width: 768px) {
+  .mobile-header { display: flex; }
+  .sidebar-overlay { display: block; }
+  .sidebar-close { display: flex; }
+
+  .sidebar {
+    transform: translateX(-100%);
+    box-shadow: 8px 0 32px rgba(0,0,0,0.15);
+    width: 280px;
+  }
+  .sidebar--open {
+    transform: translateX(0);
+  }
+}
