@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
-import { LayoutDashboard, Package, PlusCircle, MessageSquare, LogOut, Zap, Menu, X } from 'lucide-react'
+import { LayoutDashboard, Package, PlusCircle, MessageSquare, LogOut, Zap, Menu, X, Contact2 } from 'lucide-react'
 import './Sidebar.css'
 
 const navItems = [
@@ -8,6 +8,7 @@ const navItems = [
   { to: '/admin/products',     icon: Package,         label: 'Products' },
   { to: '/admin/products/add', icon: PlusCircle,      label: 'Add Product' },
   { to: '/admin/inquiries',    icon: MessageSquare,   label: 'Inquiries' },
+  { to: '/admin/contacts',     icon: Contact2,        label: 'Contacts' },
 ]
 
 export default function Sidebar() {

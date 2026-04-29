@@ -1,0 +1,241 @@
+/* Book.css */
+
+.book-section {
+  width: 100%;
+  min-height: 100vh;
+  background: #f4ece4;
+  color: #111;
+}
+
+/* Navbar */
+.book-navbar {
+  width: 100%;
+  padding: 20px 55px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.book-logo {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.book-nav-links {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+}
+
+.book-nav-links a {
+  text-decoration: none;
+  color: #111;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.book-nav-links a:hover {
+  color: #e08c78;
+}
+
+.book-nav-btn {
+  border: none;
+  padding: 10px 18px;
+  background: #f39a87;
+  color: white;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.book-nav-btn:hover {
+  background: #e07f69;
+}
+
+/* Main Layout */
+.book-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  padding: 30px 55px 60px;
+  align-items: start;
+}
+
+/* Left */
+.book-left h1 {
+  font-size: 56px;
+  font-weight: 500;
+  line-height: 1.1;
+  margin-bottom: 35px;
+  max-width: 520px;
+}
+
+.book-left p {
+  font-size: 14px;
+  line-height: 1.8;
+  max-width: 520px;
+  margin-bottom: 50px;
+  color: #333;
+}
+
+.book-image-box {
+  width: 100%;
+  max-width: 420px;
+  height: 280px;
+  background: linear-gradient(to right, #dfe4e7, #cfd3d6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.book-circle {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #333, #000);
+  box-shadow: inset 0 0 25px rgba(255,255,255,0.15),
+              0 10px 30px rgba(0,0,0,0.35);
+}
+
+/* Right */
+.book-right {
+  display: flex;
+  justify-content: center;
+}
+
+.booking-card {
+  width: 100%;
+  max-width: 520px;
+  background: white;
+  padding: 35px;
+  border: 1px solid #eee;
+}
+
+.booking-card h3 {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 30px;
+  font-weight: 500;
+}
+
+.service-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #e6e6e6;
+  padding: 20px 0;
+  gap: 20px;
+}
+
+.service-item:last-of-type {
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.service-item h4 {
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+
+.service-item span {
+  font-size: 13px;
+  color: #555;
+}
+
+.service-item button {
+  background: #111;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.service-item button:hover {
+  background: #333;
+}
+
+.powered-text {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 12px;
+  color: #666;
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+  .book-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .book-left h1 {
+    font-size: 42px;
+  }
+
+  .book-image-box {
+    max-width: 100%;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .book-navbar {
+    padding: 20px;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .book-nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+  }
+
+  .book-container {
+    padding: 20px;
+  }
+
+  .book-left h1 {
+    font-size: 34px;
+  }
+
+  .booking-card {
+    padding: 20px;
+  }
+
+  .service-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .service-item button {
+    width: 100%;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .book-logo {
+    text-align: center;
+    font-size: 14px;
+  }
+
+  .book-left h1 {
+    font-size: 28px;
+  }
+
+  .book-left p {
+    font-size: 13px;
+  }
+
+  .book-image-box {
+    height: 220px;
+  }
+
+  .book-circle {
+    width: 140px;
+    height: 140px;
+  }
+}

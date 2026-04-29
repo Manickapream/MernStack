@@ -76,6 +76,10 @@
   color: var(--text-primary);
   margin-bottom: 0.3rem;
   font-family: 'Outfit', sans-serif;
+  transition: color 0.2s;
+}
+.product-name:hover {
+  color: var(--accent);
 }
 .product-desc {
   font-size: 0.82rem;

@@ -28,7 +28,7 @@ export default function ProductCard({ product }) {
       </div>
 
       {/* Image */}
-      <div className="product-img-wrap">
+      <div className="product-img-wrap" onClick={() => navigate(`/product/${product.id}`)} style={{ cursor: 'pointer' }}>
         {product.image_url ? (
           <img src={product.image_url} alt={product.name} className="product-img" />
         ) : (
@@ -40,7 +40,7 @@ export default function ProductCard({ product }) {
 
       {/* Info */}
       <div className="product-info">
-        <h3 className="product-name">{product.name}</h3>
+        <h3 className="product-name" onClick={() => navigate(`/product/${product.id}`)} style={{ cursor: 'pointer' }}>{product.name}</h3>
         {product.description && (
           <p className="product-desc">{product.description}</p>
         )}

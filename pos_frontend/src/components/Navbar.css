@@ -1,0 +1,132 @@
+/* Navbar.css */
+.global-navbar {
+  width: 100%;
+  padding: 20px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 100;
+}
+
+.mobile-menu-icon {
+  display: none;
+  cursor: pointer;
+  z-index: 101;
+}
+
+.global-logo {
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.global-nav-links {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+}
+
+.global-nav-links a {
+  text-decoration: none;
+  font-size: 14px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+/* Light Theme */
+.global-navbar.light {
+  color: #111;
+  background: transparent;
+}
+.global-navbar.light .global-nav-links a {
+  color: #111;
+}
+.global-navbar.light .global-nav-links a:hover {
+  color: #e48e79;
+}
+
+/* Dark Theme */
+.global-navbar.dark {
+  color: white;
+  background: transparent;
+}
+.global-navbar.dark .global-nav-links a {
+  color: white;
+}
+.global-navbar.dark .global-nav-links a:hover {
+  color: #ff9f8c;
+}
+
+/* Button */
+.global-nav-btn {
+  border: none;
+  background: #f39a87;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 14px;
+  font-weight: 600;
+}
+.global-nav-btn:hover {
+  background: #df7c67;
+}
+
+/* Tablet & Mobile Responsive */
+@media (max-width: 992px) {
+  .global-navbar {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-icon {
+    display: block;
+  }
+
+  .global-nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 250px;
+    height: 100vh;
+    background: #fff;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+  }
+
+  .global-nav-links.open {
+    right: 0;
+  }
+
+  .global-nav-links a {
+    color: #111 !important;
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .global-nav-btn {
+    width: 80%;
+  }
+
+  .global-navbar.dark .mobile-menu-icon {
+    color: white;
+  }
+
+  .global-nav-links.open + .mobile-menu-icon {
+    color: #111 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .global-logo {
+    text-align: center;
+    font-size: 14px;
+  }
+}
